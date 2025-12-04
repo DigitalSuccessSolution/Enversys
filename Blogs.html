@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enversys - Sustainability Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --primary: #1c89c8;
+        --secondary: #5cb650;
+        --white: #ffffff;
+        --dark: #0f172a;
+        --gray: #64748b;
+        --light-bg: #f8fafc;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      /* 1. Font Style Change: Arial, sans-serif globally */
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: var(--dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: Arial, sans-serif;
+        font-weight: 700;
+        color: var(--dark);
+        line-height: 1.3;
+      }
+      p, span, a, li {
+        font-family: Arial, sans-serif;
+      }
+      
+      h1 { font-size: clamp(36px, 5vw, 48px); }
+      h2 { font-size: clamp(28px, 4vw, 36px); }
+      h3 { font-size: clamp(22px, 3vw, 28px); }
+      h4 { font-size: 20px; }
+
+      p {
+        color: var(--gray);
+        font-size: 16px;
+      }
+
+      /* 2. Updated Button Styles - Simple, No Gradient */
+      .btn-primary {
+        background-color: var(--primary);
+        color: var(--white);
+        padding: 12px 28px;
+        border-radius: 6px;
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+        box-shadow: none;
+      }
+      .btn-primary:hover {
+        background-color: var(--secondary);
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background-color: var(--white);
+        color: var(--primary);
+        padding: 12px 28px;
+        border-radius: 6px;
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid var(--primary);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+      }
+      .btn-secondary:hover {
+        background-color: var(--primary);
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline-white {
+        background: transparent;
+        color: var(--white);
+        padding: 10px 24px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid var(--white);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+      }
+      .btn-outline-white:hover {
+        background: var(--white);
+        color: var(--primary);
+      }
+
+      .card {
+        background: var(--white);
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        border: 1px solid #e2e8f0;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+        text-decoration: none;
+        font-weight: 500;
+        color: var(--dark);
+      }
+      .nav-link:hover {
+        color: var(--primary);
+      }
+      
+      /* Mobile Menu */
+      .hamburger {
+        width: 28px;
+        height: 20px;
+        position: relative;
+        cursor: pointer;
+        z-index: 60;
+      }
+      .hamburger span {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: var(--primary);
+        transition: all 0.3s ease;
+        left: 0;
+      }
+      .hamburger span:nth-child(1) { top: 0; }
+      .hamburger span:nth-child(2) { top: 9px; }
+      .hamburger span:nth-child(3) { top: 18px; }
+      .hamburger.active span:nth-child(1) { transform: rotate(45deg); top: 9px; }
+      .hamburger.active span:nth-child(2) { opacity: 0; }
+      .hamburger.active span:nth-child(3) { transform: rotate(-45deg); top: 9px; }
+      
+      .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid #e2e8f0;
+        max-height: 85vh;
+        overflow-y: auto;
+      }
+      .mobile-menu.active { display: block; }
+
+      .feature-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+      .social-icon:hover {
+        background: var(--secondary);
+        transform: translateY(-3px);
+      }
+      .social-icon svg {
+        width: 18px;
+        height: 18px;
+        fill: var(--white);
+      }
+
+      .stat-card {
+        background: var(--secondary);
+        color: var(--white);
+        padding: 20px;
+        border-radius: 12px;
+      }
+      .experience-badge {
+        width: 90px;
+        height: 90px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      }
+
+      /* Client Slider Animation */
+      .client-slider { animation: none; }
+      .animate-scroll { animation: scroll 30s linear infinite; }
+      @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+      .client-slider:hover .animate-scroll { animation-play-state: paused; }
+
+      /* Product Card Sizing */
+      @media(min-width:1024px){
+        .product-card { height: 260px; }
+        .product-image, .product-content { width: 50%; }
+      }
+      @media(max-width:1023px) {
+        .product-card { flex-direction: column; height: auto; }
+        .product-image { width: 100%; height: 200px; }
+        .product-content { width: 100%; padding: 20px !important; }
+      }
+
+      /* We Serve Circles */
+      .service-circle { transition: transform 0.3s ease; }
+      .service-circle:hover { transform: translateY(-5px); }
+      .circle-img {
+        border: 3px solid var(--primary);
+        transition: all 0.3s ease;
+      }
+      .service-circle:hover .circle-img {
+        border-color: var(--secondary);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- TOP BAR -->
+     <div class="w-full bg-[#5cb650] text-white">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center py-3 px-4 gap-3">
+        <div class="flex flex-wrap items-center justify-center gap-6">
+          <a href="mailto:info@enversys.com" class="flex items-center gap-2 hover:text-gray-200 transition-colors text-sm font-sans">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+            info@enversys.com
+          </a>
+          <a href="tel:+919999999999" class="flex items-center gap-2 hover:text-gray-200 transition-colors text-sm font-sans">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+             +91 9850600099 / 020-295218030
+          </a>
+        </div>
+        <div class="hidden md:flex items-center gap-3">
+          <a class="btn-outline-white py-2 px-4 text-sm" href="#">Get a Quote</a>
+          <a class="btn-outline-white py-2 px-4 text-sm" href="#">Get Brochure</a>
+        </div>
+      </div>
+    </div>
+
+ <!-- NAVBAR -->
+<header class="w-full bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-4 relative">
+    <!-- Logo -->
+    <a href="/index.html" class="flex items-center gap-3">
+      <img src="/img/logo.png" 
+           onerror="this.onerror=null; this.src='https://placehold.co/180x60/ffffff/1c89c8?text=Enversys'; this.style.opacity='1'" 
+           alt="Enversys Logo" 
+           class="h-10 sm:h-12 object-contain" />
+    </a>
+
+    <!-- Desktop Menu -->
+    <nav class="hidden lg:flex gap-8 text-[15px]  relative">
+      <a href="index.html" class="nav-link">Home</a>
+
+      <!-- About Dropdown -->
+      <div class="relative group">
+        <button class="nav-link flex items-center gap-1">
+          About
+          <svg class="w-3 h-3 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="absolute left-0 mt-2 w-48 bg-white shadow-md rounded-md opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all">
+          <a href="about.html" class="block px-4 py-2 hover:bg-gray-50">Our Company</a>
+          <a href="founder.html" class="block px-4 py-2 hover:bg-gray-50">Founder</a>
+          <a href="ourteam.html" class="block px-4 py-2 hover:bg-gray-50">Our Team</a>
+        </div>
+      </div>
+
+      <!-- Services Dropdown -->
+      <div class="relative group">
+        <button class="nav-link flex items-center gap-1">
+          Services
+          <svg class="w-3 h-3 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="absolute left-0 mt-2 w-64 bg-white shadow-md rounded-md opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all">
+          <a href="environment-services.html" class="block px-4 py-2 hover:bg-gray-50">Environment Services</a>
+          <a href="sustainability-services.html" class="block px-4 py-2 hover:bg-gray-50">Sustainability Services</a>
+          <a href="other-legal-compliance.html" class="block px-4 py-2 hover:bg-gray-50">Other Legal Compliance Services</a>
+          <a href="consent-management.html" class="block px-4 py-2 hover:bg-gray-50">Consent Management and Compliances</a>
+          <a href="environment-monitoring.html" class="block px-4 py-2 hover:bg-gray-50">Environment Monitoring</a>
+        </div>
+      </div>
+
+      <!-- Product Dropdown -->
+      <div class="relative group">
+        <button class="nav-link flex items-center gap-1">
+          Product
+          <svg class="w-3 h-3 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div class="absolute left-0 mt-2 w-64 bg-white shadow-md rounded-md opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all">
+          <a href="water-treatment-plant.html" class="block px-4 py-2 hover:bg-gray-50">Water Treatment Plant</a>
+          <a href="air-pollution-control.html" class="block px-4 py-2 hover:bg-gray-50">Air Pollution Control Equipment</a>
+          <a href="waste-water-treatment.html" class="block px-4 py-2 hover:bg-gray-50">Waste Water Treatment</a>
+          <a href="other-products.html" class="block px-4 py-2 hover:bg-gray-50">Other Products</a>
+        </div>
+      </div>
+
+      <a href="porject.html" class="nav-link">Projects</a>
+               <a href="Blogs.html" class="nav-link">Blogs</a>
+
+      <a href="career.html" class="nav-link">Career</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+
+    <!-- Contact Button -->
+    <a href="contact.html" class="hidden lg:inline-flex btn-primary py-2.5 px-6">Contact Us</a>
+
+    <!-- Mobile Menu Button -->
+    <button id="menuBtn" class="lg:hidden hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="mobile-menu lg:hidden hidden">
+      <a href="index.html" class="block py-4 px-6 border-b border-gray-100 hover:bg-gray-50 font-medium">Home</a>
+      
+      <!-- About Dropdown Mobile -->
+      <div class="border-b border-gray-100">
+        <button class="w-full text-left py-4 px-6 flex justify-between items-center font-medium hover:bg-gray-50" onclick="toggleDropdown('aboutMobile')">
+          About
+          <svg class="w-4 h-4 transform transition-transform" id="aboutMobileIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="aboutMobile" class="hidden flex-col bg-gray-50">
+          <a href="our-company.html" class="block py-2 px-6 hover:bg-gray-100">Our Company</a>
+          <a href="founder.html" class="block py-2 px-6 hover:bg-gray-100">Founder</a>
+          <a href="our-team.html" class="block py-2 px-6 hover:bg-gray-100">Our Team</a>
+        </div>
+      </div>
+
+      <!-- Services Dropdown Mobile -->
+      <div class="border-b border-gray-100">
+        <button class="w-full text-left py-4 px-6 flex justify-between items-center font-medium hover:bg-gray-50" onclick="toggleDropdown('servicesMobile')">
+          Services
+          <svg class="w-4 h-4 transform transition-transform" id="servicesMobileIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="servicesMobile" class="hidden flex-col bg-gray-50">
+          <a href="environment-services.html" class="block py-2 px-6 hover:bg-gray-100">Environment Services</a>
+          <a href="sustainability-services.html" class="block py-2 px-6 hover:bg-gray-100">Sustainability Services</a>
+          <a href="other-legal-compliance.html" class="block py-2 px-6 hover:bg-gray-100">Other Legal Compliance Services</a>
+          <a href="consent-management.html" class="block py-2 px-6 hover:bg-gray-100">Consent Management and Compliances</a>
+          <a href="environment-monitoring.html" class="block py-2 px-6 hover:bg-gray-100">Environment Monitoring</a>
+        </div>
+      </div>
+
+      <!-- Product Dropdown Mobile -->
+      <div class="border-b border-gray-100">
+        <button class="w-full text-left py-4 px-6 flex justify-between items-center font-medium hover:bg-gray-50" onclick="toggleDropdown('productMobile')">
+          Product
+          <svg class="w-4 h-4 transform transition-transform" id="productMobileIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="productMobile" class="hidden flex-col bg-gray-50">
+          <a href="water-treatment-plant.html" class="block py-2 px-6 hover:bg-gray-100">Water Treatment Plant</a>
+          <a href="air-pollution-control.html" class="block py-2 px-6 hover:bg-gray-100">Air Pollution Control Equipment</a>
+          <a href="waste-water-treatment.html" class="block py-2 px-6 hover:bg-gray-100">Waste Water Treatment</a>
+          <a href="other-products.html" class="block py-2 px-6 hover:bg-gray-100">Other Products</a>
+        </div>
+      </div>
+
+      <a href="projects.html" class="block py-4 px-6 border-b border-gray-100 hover:bg-gray-50 font-medium">Projects</a>
+      <a href="blogs.html" class="block py-4 px-6 border-b border-gray-100 hover:bg-gray-50 font-medium">Blogs</a>
+      <a href="career.html" class="block py-4 px-6 border-b border-gray-100 hover:bg-gray-50 font-medium">Career</a>
+      <a href="contact.html" class="block py-4 px-6 hover:bg-gray-50 font-medium">Contact</a>
+
+      <div class="p-6 flex flex-col gap-4 bg-slate-50 border-t border-gray-200">
+        <a class="btn-primary w-full justify-center py-3" href="#">Get a Quote</a>
+        <a class="btn-secondary w-full justify-center py-3" href="#">Get Brochure</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Script for Mobile Menu -->
+
+
+  <section class="relative w-full h-[400px] sm:h-[500px] overflow-hidden font-sans">
+  
+  <div class="absolute inset-0 w-full h-full z-0 bg-cover bg-center bg-no-repeat" 
+       style="background-image: url('img/Markal\ Edited.jpg');"> 
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+
+  <div class="absolute inset-0 w-full h-full z-12"
+       style="clip-path: polygon(100% 0, 100% 100%, 0% 100%); 
+              background: linear-gradient(to top right, rgba(28, 137, 200, 0.9), rgba(15, 76, 117, 0.6));">
+    
+    <div class="container mx-auto h-full flex flex-col justify-center items-center sm:justify-end sm:items-end px-6 pb-12 sm:pb-24 text-white text-center sm:text-right">
+      <div class="max-w-2xl w-full flex flex-col items-center sm:items-end">
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-bold mb-4 leading-tight drop-shadow-xl tracking-wide text-white">
+          Our Blog
+        </h1>
+        <p class="text-base sm:text-xl font-light mb-8 opacity-95 leading-relaxed text-blue-50">
+          Insights on Environmental Engineering, Sustainability,<br class="hidden sm:block"> and Industrial Compliance.
+        </p>
+        <div class="inline-flex items-center gap-3 text-sm sm:text-base font-medium bg-white/10 px-4 py-2 rounded-full backdrop-blur-md border border-white/20 shadow-lg hover:bg-white/20 transition-all">
+          <a href="index.html" class="flex items-center gap-1 opacity-90 hover:opacity-100 transition-opacity">Home</a>
+          <span class="opacity-60">/</span>
+          <span class="text-white font-semibold">Blogs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 md:py-24 bg-slate-50 font-sans" id="blog-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            
+            <div class="lg:col-span-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="blog-grid">
+                    </div>
+            </div>
+
+            <aside class="lg:col-span-1 space-y-8 h-fit lg:sticky lg:top-24">
+                
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg">
+                    <h4 class="font-bold text-[#0f172a] text-lg mb-5 border-l-4 border-[#5cb650] pl-3">Categories</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="flex justify-between text-gray-600 hover:text-[#1c89c8] group"><span>Environmental Tech</span><span class="bg-slate-100 text-xs px-2 py-1 rounded-full group-hover:bg-[#1c89c8] group-hover:text-white">12</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-600 hover:text-[#1c89c8] group"><span>Legal Compliance</span><span class="bg-slate-100 text-xs px-2 py-1 rounded-full group-hover:bg-[#1c89c8] group-hover:text-white">08</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-600 hover:text-[#1c89c8] group"><span>Water Treatment</span><span class="bg-slate-100 text-xs px-2 py-1 rounded-full group-hover:bg-[#1c89c8] group-hover:text-white">15</span></a></li>
+                        <li><a href="#" class="flex justify-between text-gray-600 hover:text-[#1c89c8] group"><span>Waste Management</span><span class="bg-slate-100 text-xs px-2 py-1 rounded-full group-hover:bg-[#1c89c8] group-hover:text-white">05</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg">
+                    <h4 class="font-bold text-[#0f172a] text-lg mb-5 border-l-4 border-[#1c89c8] pl-3">Recent News</h4>
+                    <div class="space-y-5">
+                         <div class="flex gap-4 group items-center cursor-pointer" onclick="openModal(1)">
+                            <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=150" class="w-full h-full object-cover"></div>
+                            <div><h5 class="text-sm font-bold text-[#0f172a] group-hover:text-[#1c89c8] line-clamp-2">Organic Waste Composter...</h5><span class="text-xs text-gray-400">Nov 28, 2025</span></div>
+                        </div>
+                         <div class="flex gap-4 group items-center cursor-pointer" onclick="openModal(3)">
+                            <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0"><img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=150" class="w-full h-full object-cover"></div>
+                            <div><h5 class="text-sm font-bold text-[#0f172a] group-hover:text-[#1c89c8] line-clamp-2">STP Manufacturers in Pune...</h5><span class="text-xs text-gray-400">Nov 15, 2025</span></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-lg">
+                    <h4 class="font-bold text-[#0f172a] text-lg mb-5 border-l-4 border-[#5cb650] pl-3">Popular Tags</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs font-semibold text-gray-600 bg-gray-100 px-3 py-1.5 rounded hover:bg-[#1c89c8] hover:text-white cursor-pointer">#PollutionControl</span>
+                        <span class="text-xs font-semibold text-gray-600 bg-gray-100 px-3 py-1.5 rounded hover:bg-[#1c89c8] hover:text-white cursor-pointer">#STP</span>
+                        <span class="text-xs font-semibold text-gray-600 bg-gray-100 px-3 py-1.5 rounded hover:bg-[#1c89c8] hover:text-white cursor-pointer">#ETP</span>
+                        <span class="text-xs font-semibold text-gray-600 bg-gray-100 px-3 py-1.5 rounded hover:bg-[#1c89c8] hover:text-white cursor-pointer">#ZLD</span>
+                        <span class="text-xs font-semibold text-gray-600 bg-gray-100 px-3 py-1.5 rounded hover:bg-[#1c89c8] hover:text-white cursor-pointer">#OWC</span>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+</section>
+
+<div id="blogModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+            <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-4xl border border-white/20">
+                
+                <button type="button" class="absolute top-4 right-4 z-20 p-2 rounded-full bg-black/10 hover:bg-black/20 text-gray-600 transition-colors" onclick="closeModal()">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+
+                <div id="modalContent" class="max-h-[85vh] overflow-y-auto bg-white">
+                    <div class="h-64 sm:h-80 w-full relative">
+                        <img id="modalImage" src="" alt="Blog Cover" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <span id="modalCategory" class="inline-block px-3 py-1 mb-3 text-xs font-bold text-white rounded-full bg-[#1c89c8]">Category</span>
+                            <h2 id="modalTitle" class="text-2xl sm:text-4xl font-bold text-white leading-tight">Title Goes Here</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6 sm:p-10 space-y-6 text-slate-700 leading-relaxed text-base sm:text-lg" id="modalBody">
+                        </div>
+                </div>
+
+                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 border-t border-gray-100">
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" onclick="closeModal()">Close</button>
+                    <a href="contact.html" class="inline-flex w-full justify-center rounded-md bg-[#1c89c8] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#156a9e] sm:mr-3 sm:w-auto">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Blog Data (Full Content from your prompt)
+    const blogData = [
+        {
+            id: 0,
+            title: "Success Story of Enversys Greentek Solutions",
+            category: "Success Story",
+            date: "Dec 05, 2025",
+            image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800",
+            badgeColor: "bg-yellow-500",
+            excerpt: "Enversys Greentek Solutions has rapidly grown into one of the most trusted names in environmental engineering, delivering high-quality and sustainable solutions for industries...",
+            fullContent: `
+                <p><strong>A Leading Environmental Engineering Company</strong></p>
+                <p>Enversys Greentek Solutions has rapidly grown into one of the most trusted names in environmental engineering, delivering high-quality and sustainable solutions for industries, commercial complexes, and residential projects. With a strong presence across Maharashtra, the company is known for its expertise in STP, ETP, ZLD Systems, OWC Manufacturing, and Pollution Control Board Compliance Services.</p>
+                
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">The Beginning of a Green Vision</h3>
+                <p>Enversys Greentek Solutions was founded with a simple mission: to provide innovative, eco-friendly, and cost-effective environmental solutions that support a cleaner and greener future. From its base in Pune, the company started with specialized services in:</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li>STP – Sewage Treatment Plants</li>
+                    <li>ETP – Effluent Treatment Plants</li>
+                    <li>ZLD – Zero Liquid Discharge Systems</li>
+                    <li>OWC – Organic Waste Composter Manufacturing</li>
+                    <li>Environmental Legal Services (PCB NOC, CTE/CTO, Compliance)</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Commitment to Quality and Innovation</h3>
+                <p>Enversys Greentek Solutions stands out in the industry due to its dedication to:</p>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li>High-quality design and manufacturing</li>
+                    <li>Reliable and energy-efficient plant performance</li>
+                    <li>On-time project execution</li>
+                    <li>Responsive after-sales and AMC services</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Major Milestones in the Journey</h3>
+                <p>Over the years, Enversys has achieved significant milestones such as successful installation of STP and ETP plants across multiple industries, long-term AMC success stories, and expansion into spare supply and audits.</p>
+                
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Future Roadmap</h3>
+                <p>Enversys Greentek Solutions aims to expand its footprint by increasing manufacturing capabilities, integrating IoT and automation into treatment plants, and strengthening the legal compliance division. The company is committed to becoming a leading environmental engineering brand across India.</p>
+            `
+        },
+        {
+            id: 1,
+            title: "Organic Waste Composter (OWC) Manufacturers",
+            category: "Waste Management",
+            date: "Nov 28, 2025",
+            image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800",
+            badgeColor: "bg-[#5cb650]",
+            excerpt: "With growing urbanization and increasing waste generation, effective waste management has become a priority. One solution that is transforming the way organic waste is handled...",
+            fullContent: `
+                <p><strong>Driving Sustainable Waste Management in India</strong></p>
+                <p>With growing urbanization and increasing waste generation, effective waste management has become a priority for industries, residential societies, hotels, and commercial establishments. One solution that is transforming the way organic waste is handled is the Organic Waste Composter (OWC). As leading OWC manufacturers, companies like Enversys Greentek Solutions are helping organizations convert daily waste into valuable compost—quickly, efficiently, and sustainably.</p>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">What is an Organic Waste Composter (OWC)?</h3>
+                <p>An Organic Waste Composter (OWC) is a machine designed to convert biodegradable waste such as food waste, garden waste, and organic residues into nutrient-rich compost. It offers fast composting, odor-free operation, and reduction in waste volume by up to 80–90%.</p>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Types of OWC Machines</h3>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li><strong>Fully Automatic:</strong> Ideal for large hotels, IT parks. Faster composting with minimal human intervention.</li>
+                    <li><strong>Semi-Automatic:</strong> Suitable for societies and restaurants. Cost-effective and easy to operate.</li>
+                    <li><strong>Bio-Mechanical:</strong> Uses controlled aeration and microbial action.</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Why Enversys Greentek Solutions?</h3>
+                <p>Enversys has established itself as a reliable name in OWC manufacturing in Pune. The company delivers machines that are durable, safe, easy to operate, and backed by strong service support and AMC packages.</p>
+            `
+        },
+        {
+            id: 2,
+            title: "Environmental Consultant in Pune",
+            category: "Consultancy",
+            date: "Nov 20, 2025",
+            image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800",
+            badgeColor: "bg-[#1c89c8]",
+            excerpt: "With rapid industrial growth and tightening environmental regulations, businesses today need expert support to stay compliant and operate responsibly. As a leading...",
+            fullContent: `
+                <p><strong>Expert Compliance & Engineering</strong></p>
+                <p>With rapid industrial growth and tightening environmental regulations, businesses today need expert support to stay compliant and operate responsibly. As a leading Environmental Consultant in Pune, Enversys Greentek Solutions provides complete, reliable, and professional environmental services for industries, corporates, infrastructure projects, and residential developments.</p>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Why Environmental Consulting Is Important</h3>
+                <p>Every industry must follow environmental norms set by the Pollution Control Board (PCB). These regulations ensure safe disposal of wastewater, proper management of air emissions, and compliance with green norms. Non-compliance may lead to penalties or shutdown notices.</p>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Core Services Offered</h3>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li><strong>PCB Approvals:</strong> CTE (Consent to Establish), CTO (Consent to Operate), Renewal.</li>
+                    <li><strong>Environmental Clearance:</strong> Documentation for EC applications and compliance reports.</li>
+                    <li><strong>Engineering Solutions:</strong> STP, ETP, ZLD Systems design and AMC.</li>
+                    <li><strong>Audits:</strong> Environmental audits, gap identification, and pollution load calculations.</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Why Clients Trust Us</h3>
+                <p>Experienced certified consultants, accurate documentation, strong coordination with regulatory authorities, and technical expertise in STP/ETP system design make us the preferred partner.</p>
+            `
+        },
+        {
+            id: 3,
+            title: "STP Manufacturers in Pune",
+            category: "Water Tech",
+            date: "Nov 15, 2025",
+            image: "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=800",
+            badgeColor: "bg-cyan-600",
+            excerpt: "As urban development expands and water scarcity becomes a major concern, the need for efficient Sewage Treatment Plants (STP) has never been more important...",
+            fullContent: `
+                <p><strong>Advanced Wastewater Solutions</strong></p>
+                <p>As urban development expands and water scarcity becomes a major concern, the need for efficient Sewage Treatment Plants (STP) has never been more important. As a leading STP manufacturer in Pune, Enversys Greentek Solutions delivers advanced, reliable, and sustainable wastewater treatment solutions for residential, commercial, and industrial applications.</p>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Why STP Is Essential</h3>
+                <p>Pollution Control Board (PCB) regulations mandate the installation of STP systems. An STP helps treat and recycle wastewater, reduce load on municipal drainage systems, improve hygiene, and reduce fresh water consumption through reuse.</p>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Technologies We Offer</h3>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li><strong>MBBR (Moving Bed Biofilm Reactor):</strong> Energy-efficient, compact, ideal for residential projects.</li>
+                    <li><strong>SBR (Sequential Batch Reactor):</strong> Highly efficient, automated, suitable for large installations.</li>
+                    <li><strong>MBR (Membrane Bio Reactor):</strong> Delivers high-quality treated water suitable for reuse.</li>
+                    <li><strong>FAB (Fixed Aerated Bed):</strong> Simple design and low O&M requirements.</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Sectors We Serve</h3>
+                <p>Residential societies, townships, commercial buildings, hospitals, hotels, and industrial units trust our STP systems for reliable performance.</p>
+            `
+        },
+        {
+            id: 4,
+            title: "ETP Plant Manufacturers in Maharashtra",
+            category: "Industrial",
+            date: "Nov 10, 2025",
+            image: "https://images.unsplash.com/photo-1621905252507-b35492ccba0b?w=800",
+            badgeColor: "bg-purple-600",
+            excerpt: "In today’s industrial landscape, managing wastewater responsibly is not just a regulatory requirement—it is a commitment to environmental protection...",
+            fullContent: `
+                <p><strong>Reliable Industrial Effluent Treatment</strong></p>
+                <p>In today’s industrial landscape, managing wastewater responsibly is not just a regulatory requirement—it is a commitment to environmental protection and sustainable growth. As industries across Maharashtra continue to expand, the need for efficient and reliable Effluent Treatment Plants (ETP) has become more important than ever.</p>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Why Efficient ETP Matters</h3>
+                <p>Industrial effluents contain harmful pollutants, chemicals, oils, and suspended solids. Without proper treatment, they impact groundwater, soil fertility, and public health. An advanced ETP ensures safe disposal and reuse, aligning businesses with MPCB norms.</p>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Our ETP Solutions Include</h3>
+                <ul class="list-disc pl-5 mt-2 space-y-1">
+                    <li><strong>Custom-Designed ETPs:</strong> Tailored as per effluent characteristics and flow rate.</li>
+                    <li><strong>Advanced Technologies:</strong> Primary, Secondary & Tertiary treatment, MBBR systems.</li>
+                    <li><strong>ZLD Options:</strong> Zero Liquid Discharge for complete water reuse.</li>
+                    <li><strong>AMC Services:</strong> Expert technical support to keep your plant running efficiently.</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-[#0f172a] mt-6 mb-2">Benefits</h3>
+                <p>100% MPCB compliance, reduced environmental impact, better corporate sustainability, and cost savings through water reuse.</p>
+            `
+        }
+    ];
+
+    // Function to Render Cards
+    function renderCards() {
+        const grid = document.getElementById('blog-grid');
+        grid.innerHTML = blogData.map(blog => `
+            <article class="blog-card bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full group">
+                <div class="blog-img-container h-56 relative overflow-hidden">
+                    <img src="${blog.image}" alt="${blog.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <span class="absolute top-4 left-4 ${blog.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full shadow-md uppercase tracking-wide">${blog.category}</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow relative">
+                    <div class="flex items-center gap-3 text-xs font-medium text-gray-400 mb-3">
+                        <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> ${blog.date}</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-[#0f172a] mb-3 leading-snug group-hover:text-[#1c89c8] transition-colors">
+                        <a href="javascript:void(0)" onclick="openModal(${blog.id})">${blog.title}</a>
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-6 flex-grow line-clamp-4">
+                        ${blog.excerpt}
+                    </p>
+                    <button onclick="openModal(${blog.id})" class="inline-flex items-center text-[#1c89c8] font-bold text-sm hover:text-[#5cb650] transition-colors mt-auto group-hover:translate-x-1 duration-300">
+                        Read Full Story <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </button>
+                </div>
+            </article>
+        `).join('');
+    }
+
+    // Initialize Cards
+    document.addEventListener('DOMContentLoaded', renderCards);
+
+    // Modal Functions
+    function openModal(id) {
+        const blog = blogData.find(b => b.id === id);
+        if(!blog) return;
+
+        document.getElementById('modalImage').src = blog.image;
+        document.getElementById('modalTitle').innerText = blog.title;
+        document.getElementById('modalCategory').innerText = blog.category;
+        document.getElementById('modalBody').innerHTML = blog.fullContent;
+        
+        const modal = document.getElementById('blogModal');
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('blogModal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+</script>
+
+    <footer id="contact" class="bg-[#0f172a] text-white pt-12 sm:pt-16 pb-8 font-sans">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10">
+        
+        <div class="sm:col-span-2 lg:col-span-1">
+          <div class="flex items-center gap-3 mb-4 sm:mb-6">
+            <img src="img/logo.png" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/150x50/0f172a/ffffff?text=Enversys'; this.style.opacity='1'" 
+                 class="h-8 filter brightness-0 invert" alt="Logo">
+          </div>
+          <p class="text-gray-400 text-sm mb-6 leading-relaxed">Enversys provides comprehensive environmental and sustainability solutions across India.</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#1c89c8] transition-colors">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-[#1c89c8] transition-colors">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold text-[#1c89c8] mb-4">Our Services</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="environment-services.html" class="hover:text-[#5cb650] transition-colors block py-1">Environment Services</a></li>
+            <li><a href="sustainability-services.html" class="hover:text-[#5cb650] transition-colors block py-1">Sustainability Services</a></li>
+            <li><a href="other-legal-compliance.html" class="hover:text-[#5cb650] transition-colors block py-1">Other Legal Compliance</a></li>
+            <li><a href="consent-management.html" class="hover:text-[#5cb650] transition-colors block py-1">Consent Management</a></li>
+            <li><a href="environment-monitoring.html" class="hover:text-[#5cb650] transition-colors block py-1">Environment Monitoring</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold text-[#1c89c8] mb-4">Our Products</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="water-treatment-plant.html" class="hover:text-[#5cb650] transition-colors block py-1">Water Treatment Plant</a></li>
+            <li><a href="air-pollution-control.html" class="hover:text-[#5cb650] transition-colors block py-1">Air Pollution Control</a></li>
+            <li><a href="waste-water-treatment.html" class="hover:text-[#5cb650] transition-colors block py-1">Waste Water Treatment</a></li>
+            <li><a href="other-products.html" class="hover:text-[#5cb650] transition-colors block py-1">Other Products</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold text-[#1c89c8] mb-4">Quick Links</h3>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li><a href="index.html" class="hover:text-[#5cb650] transition-colors block py-1">Home</a></li>
+            <li><a href="about.html" class="hover:text-[#5cb650] transition-colors block py-1">About</a></li>
+            <li><a href="services.html" class="hover:text-[#5cb650] transition-colors block py-1">Services</a></li>
+            <li><a href="product.html" class="hover:text-[#5cb650] transition-colors block py-1">Product</a></li>
+            <li><a href="projects.html" class="hover:text-[#5cb650] transition-colors block py-1">Projects</a></li>
+            <li><a href="career.html" class="hover:text-[#5cb650] transition-colors block py-1">Career</a></li>
+            <li><a href="contact.html" class="hover:text-[#5cb650] transition-colors block py-1">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold text-[#1c89c8] mb-4">Corporate Office</h3>
+          <div class="space-y-2 text-sm text-gray-400">
+            <p>Greens Center, Aditya Birla Hospital Road</p>
+            <p>Thergaon, Pune 411033</p>
+            <p class="mt-4"><span class="text-gray-500">Phone:</span> <br>+91 9850864141</p>
+            <p><span class="text-gray-500">Email:</span> <br>info@enversys.com</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 mt-10 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+        <p class="text-gray-500 text-sm">© 2025 Enversys. All Rights Reserved.</p>
+        <a href="#" class="bg-[#1c89c8] hover:bg-[#156a9e] text-white font-medium py-2 px-6 rounded text-sm transition-colors w-full md:w-auto">GET A QUOTE</a>
+      </div>
+    </footer>
+
+    <script>
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const hamburger = document.querySelector('.hamburger');
+
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        hamburger.classList.toggle('active');
+      });
+
+      function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        const icon = document.getElementById(id + 'Icon');
+        
+        if (dropdown.classList.contains('hidden')) {
+          dropdown.classList.remove('hidden');
+          dropdown.classList.add('flex');
+          icon.style.transform = 'rotate(180deg)';
+        } else {
+          dropdown.classList.add('hidden');
+          dropdown.classList.remove('flex');
+          icon.style.transform = 'rotate(0deg)';
+        }
+      }
+    </script>
+  </body>
+</html>
