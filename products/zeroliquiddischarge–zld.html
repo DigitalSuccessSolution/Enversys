@@ -5,7 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Water Treatment Plant - Enversys</title>
+    <title>Zero Liquid Discharge (ZLD) - Enversys</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       :root {
@@ -59,11 +59,33 @@
         box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         transition: transform 0.5s ease;
         height: 100%;
-        min-height: 400px;
+        min-height: 350px;
+      }
+      .product-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
       .product-image-container:hover {
         transform: scale(1.02);
       }
+      
+      .tech-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%; 
+        display: flex;
+        flex-direction: column;
+        border-bottom: 4px solid var(--primary); /* Default bottom border */
+      }
+      .tech-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+      
       .check-list li {
         position: relative;
         padding-left: 25px;
@@ -77,6 +99,23 @@
         color: var(--secondary);
         font-weight: bold;
       }
+      
+      /* Icon Circle for Features */
+      .icon-circle {
+        width: 70px; height: 70px;
+        background: #f0f9ff;
+        color: var(--primary);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+      }
+      .tech-card:hover .icon-circle {
+          transform: scale(1.1);
+      }
+      .border-green-t { border-top-color: var(--secondary) !important; }
+      .icon-green-bg { background-color: #f0fdf4 !important; color: var(--secondary) !important; }
+
     </style>
   </head>
   <body>
@@ -90,7 +129,7 @@
           </a>
           <a href="tel:+919999999999" class="flex items-center gap-2 hover:text-gray-200 transition-colors text-sm font-sans">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
-             +91 9850600099 / 020-295218030
+              +91 9850600099 / 020-295218030
           </a>
         </div>
         <div class="hidden md:flex items-center gap-3">
@@ -101,15 +140,16 @@
     </div>
 <header class="w-full bg-white shadow-sm sticky top-0 z-50">
   <div class="max-w-7xl mx-auto flex justify-between items-center py-4 px-4 relative">
-   
-     <a href="/index.html" class="flex items-center gap-3">
-      <img src="/img/logo.png"
-           onerror="this.onerror=null; this.src='https://placehold.co/180x60/ffffff/1c89c8?text=Enversys'; this.style.opacity='1'"
-           alt="Enversys Logo"
+    
+    <a href="/index.html" class="flex items-center gap-3">
+      <img src="/img/logo.png" 
+           onerror="this.onerror=null; this.src='https://placehold.co/180x60/ffffff/1c89c8?text=Enversys'; this.style.opacity='1'" 
+           alt="Enversys Logo" 
            class="h-10 sm:h-12 object-contain" />
     </a>
+
     <nav class="hidden lg:flex gap-8 text-[15px] relative items-center">
-      <a href="index.html" class="nav-link hover:text-blue-600 transition-colors">Home</a>
+      <a href="/index.html" class="nav-link hover:text-blue-600 transition-colors">Home</a>
 
       <div class="relative group">
         <button class="nav-link flex items-center gap-1 hover:text-blue-600 transition-colors py-2">
@@ -120,11 +160,11 @@
         </button>
         <div class="absolute left-0 top-full mt-0 w-56 bg-white shadow-lg rounded-md border border-gray-100 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 transform origin-top group-hover:translate-y-0 translate-y-2">
           <div class="py-2">
-            <a href="about.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Our Company</a>
-            <a href="founder.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Founder</a>
-            <a href="ourteam.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Our Team</a>
-            <a href="why-us.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Why Us</a>
-            <a href="certificates.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Certificates</a>
+            <a href="/about.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Our Company</a>
+            <a href="/founder.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Founder</a>
+            <a href="/ourteam.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Our Team</a>
+            <a href="/why-us.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Why Us</a>
+            <a href="/certificates.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Certificates</a>
           </div>
         </div>
       </div>
@@ -138,11 +178,11 @@
         </button>
         <div class="absolute left-0 top-full mt-0 w-72 bg-white shadow-lg rounded-md border border-gray-100 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 transform origin-top group-hover:translate-y-0 translate-y-2">
           <div class="py-2">
-            <a href="services/EnvironmentalServices.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Environmental Services</a>
-            <a href="services/consent-management.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Consent Management and Compliances</a>
-            <a href="services/legal-compliances.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Other Legal Compliances Services</a>
-            <a href="services/sustainability-services.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Sustainability Services</a>
-            <a href="services/NABL&MoEFLABORATORY.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Environmental Monitoring</a>
+            <a href="/services/EnvironmentalServices.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Environmental Services</a>
+            <a href="/services/consent-management.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Consent Management</a>
+            <a href="/services/legal-compliances.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Other Legal Compliances</a>
+            <a href="/services/sustainability-services.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Sustainability Services</a>
+            <a href="/services/EnvironmentalMonitoring.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Environmental Monitoring</a>
           </div>
         </div>
       </div>
@@ -154,27 +194,31 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
-        <div class="absolute left-0 top-full mt-0 w-80 bg-white shadow-lg rounded-md border border-gray-100 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 transform origin-top group-hover:translate-y-0 translate-y-2">
-          <div class="py-2">
-            <a href="products/ETP.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Effluent Treatment Plants (ETP)</a>
-            <a href="products/STP.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Sewage Treatment Plants (STP)</a>
-            <a href="products/ZLD.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Zero Liquid Discharge (ZLD)</a>
-            <a href="products/RO+UF.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">RO+UF Plants</a>
-            <a href="products/WaterSofteners.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Water Softeners</a>
-            <a href="products/DMPlants.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">DM Plants</a>
-            <a href="products/OrganicWasteConverters.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Organic Waste Converters</a>
-            <a href="products/Air PollutionControlEquipment.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Air Pollution Control Equipment</a>
+        <div class="absolute left-0 top-full mt-0 w-96 bg-white shadow-lg rounded-md border border-gray-100 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 transform origin-top group-hover:translate-y-0 translate-y-2">
+          <div class="py-2 max-h-[80vh] overflow-y-auto">
+            <a href="/products/AIRPOLLUTIONCONTROLEQUIPMENT.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Air Pollution Control Equipment</a>
+            <a href="/products/EFFLUENTTREATMENTPLANT–ETP.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Effluent Treatment Plant (ETP)</a>
+            <a href="/products/MultiEffectEvaporator(MEE).html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Multi Effect Evaporator (MEE)</a>
+            <a href="/products/ORGANICWASTECONVERTOR–OWC.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Organic Waste Convertor (OWC)</a>
+            <a href="sewagetreatmentplant–stp.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Sewage Treatment Plant (STP)</a>
+            <a href="/products/wastewater.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Wastewater</a>
+            <a href="/products/WATERTREATMENTPLANT.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Water Treatment Plant</a>
+            <a href="/products/ZEROLIQUIDDISCHARGE–ZLD.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Zero Liquid Discharge (ZLD)</a>
+            <a href="/products/OTHERPRODUCTS.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Other Products</a>
           </div>
         </div>
       </div>
 
-      <a href="projects.html" class="nav-link hover:text-blue-600 transition-colors">Projects</a>
-      <a href="blogs.html" class="nav-link hover:text-blue-600 transition-colors">Blogs</a>
-      <a href="career.html" class="nav-link hover:text-blue-600 transition-colors">Career</a>
-      <a href="contact.html" class="nav-link hover:text-blue-600 transition-colors">Contact</a>
+      <a href="/porject.html" class="nav-link hover:text-blue-600 transition-colors">Projects</a>
+      
+      <a href="/Blogs.html" class="nav-link hover:text-blue-600 transition-colors">Blogs</a>
+      
+      <a href="/career.html" class="nav-link hover:text-blue-600 transition-colors">Career</a>
+      
+      <a href="/Contact.html" class="nav-link hover:text-blue-600 transition-colors">Contact</a>
     </nav>
 
-    <a href="contact.html" class="hidden lg:inline-flex bg-blue-600 text-white hover:bg-blue-700 transition-colors font-medium rounded-md py-2.5 px-6">Contact Us</a>
+    <a href="/Contact.html" class="hidden lg:inline-flex bg-blue-600 text-white hover:bg-blue-700 transition-colors font-medium rounded-md py-2.5 px-6">Contact Us</a>
 
     <button id="menuBtn" class="lg:hidden p-2 text-gray-700 hover:text-blue-600 focus:outline-none" aria-label="Menu">
       <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -184,9 +228,9 @@
   </div>
 
   <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute top-full left-0 w-full shadow-lg h-[calc(100vh-80px)] overflow-y-auto">
-   
-    <a href="index.html" class="block py-4 px-6 border-b border-gray-100 hover:bg-gray-50 font-medium text-gray-800">Home</a>
-   
+    
+    <a href="/index.html" class="block py-4 px-6 border-b border-gray-100 hover:bg-gray-50 font-medium text-gray-800">Home</a>
+    
     <div class="border-b border-gray-100">
       <button class="w-full text-left py-4 px-6 flex justify-between items-center font-medium text-gray-800 hover:bg-gray-50 focus:outline-none" onclick="toggleDropdown('aboutMobile')">
         About
@@ -195,11 +239,11 @@
         </svg>
       </button>
       <div id="aboutMobile" class="hidden flex-col bg-gray-50 pl-4 border-t border-gray-100">
-        <a href="about.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Our Company</a>
-        <a href="founder.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Founder</a>
-        <a href="ourteam.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Our Team</a>
-        <a href="why-us.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Why Us</a>
-        <a href="certificates.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Certificates</a>
+        <a href="/about.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Our Company</a>
+        <a href="/founder.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Founder</a>
+        <a href="/ourteam.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Our Team</a>
+        <a href="/why-us.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Why Us</a>
+        <a href="/certificates.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Certificates</a>
       </div>
     </div>
 
@@ -211,11 +255,11 @@
         </svg>
       </button>
       <div id="servicesMobile" class="hidden flex-col bg-gray-50 pl-4 border-t border-gray-100">
-        <a href="services/EnvironmentalServices.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Environmental Services</a>
-        <a href="services/consent-management.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Consent Management and Compliances</a>
-        <a href="services/legal-compliances.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Other Legal Compliances Services</a>
-        <a href="services/sustainability-services.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Sustainability Services</a>
-        <a href="services/environmental-monitoring.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Environmental Monitoring</a>
+        <a href="/services/EnvironmentalServices.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Environmental Services</a>
+        <a href="/services/consent-management.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Consent Management</a>
+        <a href="/services/legal-compliances.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Other Legal Compliances</a>
+        <a href="/services/sustainability-services.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Sustainability Services</a>
+        <a href="/services/EnvironmentalMonitoring.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Environmental Monitoring</a>
       </div>
     </div>
 
@@ -227,210 +271,185 @@
         </svg>
       </button>
       <div id="productMobile" class="hidden flex-col bg-gray-50 pl-4 border-t border-gray-100">
-        <a href="products/ETP.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Effluent Treatment Plants (ETP)</a>
-        <a href="products/STP.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Sewage Treatment Plants (STP)</a>
-        <a href="products/ZLD.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Zero Liquid Discharge (ZLD)</a>
-        <a href="products/RO+UF.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">RO+UF Plants</a>
-        <a href="products/WaterSofteners.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Water Softeners</a>
-        <a href="products/DMPlants.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">DM Plants</a>
-        <a href="products/OrganicWasteConverters.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Organic Waste Converters</a>
-        <a href="products/Air PollutionControlEquipment.html" class="block px-4 py-2 hover:bg-blue-50 hover:text-blue-600">Air Pollution Control Equipment</a>
+        <a href="/products/AIRPOLLUTIONCONTROLEQUIPMENT.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Air Pollution Control Equipment</a>
+        <a href="/products/EFFLUENTTREATMENTPLANT–ETP.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Effluent Treatment Plant (ETP)</a>
+        <a href="/products/MultiEffectEvaporator(MEE).html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Multi Effect Evaporator (MEE)</a>
+        <a href="/products/ORGANICWASTECONVERTOR–OWC.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Organic Waste Convertor (OWC)</a>
+        <a href="sewagetreatmentplant–stp.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Sewage Treatment Plant (STP)</a>
+        <a href="/products/wastewater.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Wastewater</a>
+        <a href="/products/WATERTREATMENTPLANT.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Water Treatment Plant</a>
+        <a href="/products/ZEROLIQUIDDISCHARGE–ZLD.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Zero Liquid Discharge (ZLD)</a>
+        <a href="/products/OTHERPRODUCTS.html" class="block py-3 px-6 text-gray-600 hover:text-blue-600">Other Products</a>
       </div>
     </div>
 
-    <a href="projects.html" class="block py-4 px-6 border-b border-gray-100 hover:bg-gray-50 font-medium text-gray-800">Projects</a>
-    <a href="blogs.html" class="block py-4 px-6 border-b border-gray-100 hover:bg-gray-50 font-medium text-gray-800">Blogs</a>
-    <a href="career.html" class="block py-4 px-6 border-b border-gray-100 hover:bg-gray-50 font-medium text-gray-800">Career</a>
-    <a href="contact.html" class="block py-4 px-6 hover:bg-gray-50 font-medium text-gray-800">Contact</a>
+    <a href="/porject.html" class="block py-4 px-6 border-b border-gray-100 hover:bg-gray-50 font-medium text-gray-800">Projects</a>
+    <a href="/Blogs.html" class="block py-4 px-6 border-b border-gray-100 hover:bg-gray-50 font-medium text-gray-800">Blogs</a>
+    <a href="/career.html" class="block py-4 px-6 border-b border-gray-100 hover:bg-gray-50 font-medium text-gray-800">Career</a>
+    <a href="/Contact.html" class="block py-4 px-6 hover:bg-gray-50 font-medium text-gray-800">Contact</a>
 
     <div class="p-6 flex flex-col gap-3 bg-white border-t border-gray-200 mb-10">
-      <a class="block w-full text-center bg-blue-600 text-white font-medium py-3 rounded hover:bg-blue-700 transition-colors" href="#">Get a Quote</a>
-      <a class="block w-full text-center border border-gray-300 text-gray-700 font-medium py-3 rounded hover:bg-gray-50 transition-colors" href="#">Get Brochure</a>
+      <a class="block w-full text-center bg-blue-600 text-white font-medium py-3 rounded hover:bg-blue-700 transition-colors" href="/Contact.html">Get a Quote</a>
+      <a class="block w-full text-center border border-gray-300 text-gray-700 font-medium py-3 rounded hover:bg-gray-50 transition-colors" href="/products/OTHERPRODUCTS.html">Get Brochure</a>
     </div>
   </div>
 </header>
 
 <script>
-  // Toggle Main Mobile Menu
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
-
-  // Toggle Submenus in Mobile
-  function toggleDropdown(id) {
-    const dropdown = document.getElementById(id);
-    const icon = document.getElementById(id + 'Icon');
-   
-    // Toggle the menu
-    if (dropdown.classList.contains('hidden')) {
-      dropdown.classList.remove('hidden');
-      dropdown.classList.add('flex');
-      // Rotate icon
-      icon.classList.add('rotate-180');
-    } else {
-      dropdown.classList.add('hidden');
-      dropdown.classList.remove('flex');
-      // Reset icon
-      icon.classList.remove('rotate-180');
-    }
-  }
+  menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
 </script>
 
     <section class="relative w-full h-[600px] md:h-[500px] overflow-hidden font-sans">
-      
       <div class="absolute top-0 left-0 w-full h-[40%] md:h-full md:inset-0 z-0 bg-cover bg-center md:bg-fixed" 
-           style="background-image: url('https://placehold.co/1920x1080/0284c7/ffffff?text=Pure+Water+Technologies');">
+           style="background-image: url('https://placehold.co/1920x1080/0f172a/ffffff?text=Zero+Liquid+Discharge');">
         <div class="hidden md:block absolute inset-0 bg-black/40"></div>
       </div>
 
       <div class="absolute bottom-0 left-0 w-full h-[60%] md:h-full md:inset-0 z-10
                   bg-gradient-to-b from-[#1c89c8] to-[#0f4c75]
                   md:bg-gradient-to-bl md:from-[rgba(28,137,200,0.9)] md:to-[rgba(15,76,117,0.95)]
-                  md:[clip-path:polygon(100%_0,100%_100%,25%_100%)]"> <div class="container mx-auto h-full flex flex-col justify-center items-center md:justify-end md:items-end px-6 pb-0 md:pb-16 text-white text-center md:text-right">
-          
+                  md:[clip-path:polygon(100%_0,100%_100%,25%_100%)]"> 
+        <div class="container mx-auto h-full flex flex-col justify-center items-center md:justify-end md:items-end px-6 pb-0 md:pb-16 text-white text-center md:text-right">
           <div class="max-w-xl w-full flex flex-col items-center md:items-end">
-            
             <h1 class="font-bold mb-3 leading-tight drop-shadow-xl tracking-wide text-white uppercase">
-              Water Treatment Products
+              ZERO LIQUID DISCHARGE – ZLD
             </h1>
-
             <p class="text-sm sm:text-base font-light mb-6 opacity-95 leading-relaxed drop-shadow-md tracking-wide text-blue-50">
-              Specialized purification technologies for safe, clean, and sustainable water solutions.
+              Advanced technologies promoting water conservation and resource recovery.
             </p>
-
             <div class="inline-flex items-center gap-3 text-xs sm:text-sm font-medium bg-white/10 px-3 py-1.5 rounded-full backdrop-blur-md border border-white/20 shadow-lg">
-              <a href="index.html" class="flex items-center gap-1 opacity-90 hover:opacity-100 transition-opacity">
-                Home
-              </a>
+              <a href="index.html" class="flex items-center gap-1 opacity-90 hover:opacity-100 transition-opacity">Home</a>
               <span class="opacity-60">/</span>
-              <span class="text-white font-semibold">Water Treatment Plant</span>
+              <span class="text-white font-semibold">Products</span>
+              <span class="opacity-60">/</span>
+              <span class="text-white font-semibold">Zero Liquid Discharge</span>
             </div>
-
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Intro Section -->
     <section class="py-16 bg-white">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <span class="text-[#5cb650] font-bold tracking-wider text-sm uppercase block mb-3">Pure Water Solutions</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Advanced Purification Technologies</h2>
-            <div class="h-1 w-24 bg-[#1c89c8] mx-auto rounded mb-8"></div>
-            <p class="text-lg text-gray-600 leading-relaxed">
-                Water treatment is any process that improves the quality of water to make it appropriate for a specific end-use. At Enversys Greentek Solutions, we specialize in cutting-edge water purification technologies to ensure safe, clean, and sustainable water solutions. Our Water Treatment products are designed to meet the needs of industries, businesses, and residents. We expertise in removing contaminants and undesirable components, or reducing their concentration so that the water becomes fit for its desired end-use.
-            </p>
-        </div>
-    </section>
-
-    <!-- Product 1: Water Treatment Plants (WTP) - Image Left -->
-    <section class="product-section bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
                 <div class="w-full lg:w-1/2">
-                    <div class="product-image-container">
-                         [Image of Industrial Water Treatment Plant]
-                        <img src="https://placehold.co/800x600/e2e8f0/1c89c8?text=Industrial+Water+Treatment+Plant" alt="Water Treatment Plant" class="w-full h-full object-cover">
-                    </div>
+                    <span class="text-[#5cb650] font-bold tracking-wider text-sm uppercase block mb-3">Sustainable Solutions</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Advanced Wastewater Recycling</h2>
+                    <div class="h-1 w-24 bg-[#1c89c8] rounded mb-8"></div>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        Zero Liquid Discharge (ZLD) is an advanced wastewater recycling process designed to eliminate liquid waste discharge from industrial facilities.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        It integrates cutting-edge technologies like evaporation, crystallization, and drying to treat effluents, recover reusable clean water, and concentrate solid residues for safe disposal or reuse. ZLD not only reduces environmental impact but also promotes water conservation and resource recovery.
+                    </p>
                 </div>
-                <div class="w-full lg:w-1/2">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="bg-blue-100 p-2 rounded-lg text-[#1c89c8]">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-bold text-slate-800">Water Treatment Plants (WTP)</h3>
+                 <div class="w-full lg:w-1/2">
+                    <div class="product-image-container h-[400px]">
+                        <img src="https://placehold.co/800x600/f1f5f9/1c89c8?text=ZLD+Overview" alt="Zero Liquid Discharge Process">
                     </div>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Water Treatment Plants are designed to purify and treat raw water, making it suitable for drinking, industrial, or process use. These systems efficiently remove impurities, suspended solids, organic matter, and harmful contaminants to meet regulatory water quality standards.
-                    </p>
-                    <p class="text-gray-600 mb-6 italic">
-                        Our customized solutions ensure high efficiency and reliability for diverse applications.
-                    </p>
-                     <ul class="check-list space-y-2">
-                        <li><strong>Customized Solutions:</strong> Tailored to meet specific water quality needs.</li>
-                        <li><strong>Effective Removal:</strong> Removes impurities, suspended solids & contaminants.</li>
-                        <li><strong>Compliance:</strong> Ensure regulatory water quality standards are met.</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Product 2: Ultrafiltration (UF) - Image Right -->
+    <section class="product-section bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                 <div class="w-full lg:w-1/2 order-2 lg:order-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-blue-100 p-2 rounded-lg text-[#1c89c8]">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-3xl font-bold text-slate-800">Benefits of ZLD Systems</h3>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Implementing a Zero Liquid Discharge system provides significant environmental and economic advantages for industries.
+                    </p>
+
+                    <ul class="check-list space-y-3 mb-8">
+                        <li><strong>Reducing the cost of production</strong></li>
+                        <li><strong>Water Conservation</strong></li>
+                        <li><strong>Reduced Disposal Costs</strong></li>
+                        <li><strong>Environmental Sustainability</strong></li>
+                        <li><strong>Decrease the Volume of waste</strong></li>
+                        <li><strong>Recycling of treated water</strong></li>
+                        <li><strong>Legal compliance of industries</strong></li>
+                    </ul>
+                </div>
+
+                <div class="w-full lg:w-1/2 order-1 lg:order-2">
+                    <div class="product-image-container h-[400px]">
+                        <img src="https://placehold.co/800x600/e2e8f0/5cb650?text=Sustainable+ZLD+Plant" alt="ZLD Benefits">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="product-section bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-16">
-                <div class="w-full lg:w-1/2">
-                    <div class="product-image-container">
-                         [Image of Ultrafiltration Membrane System]
-                        <img src="https://placehold.co/800x600/f0f9ff/0ea5e9?text=Ultrafiltration+Systems" alt="Ultrafiltration (UF)" class="w-full h-full object-cover">
+            <div class="text-center mb-12">
+                <span class="text-[#5cb650] font-bold tracking-wider text-sm uppercase">Our Technology</span>
+                <h2 class="text-3xl font-bold text-slate-800 mt-2">Types of Evaporators</h2>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">We offer a wide range of evaporation technologies tailored to specific industrial requirements for effective ZLD implementation.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+                
+                <div class="tech-card p-8 text-center border-t-4 border-[#1c89c8] group hover:bg-blue-50 transition-all">
+                    <div class="icon-circle mx-auto group-hover:bg-white group-hover:scale-110">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                     </div>
+                    <h4 class="text-lg font-bold text-slate-800">Single Effect Evaporators</h4>
                 </div>
-                <div class="w-full lg:w-1/2">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="bg-blue-100 p-2 rounded-lg text-[#0ea5e9]">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-bold text-slate-800">Ultrafiltration (UF)</h3>
+
+                <div class="tech-card p-8 text-center border-t-4 border-green-t group hover:bg-green-50 transition-all">
+                      <div class="icon-circle icon-green-bg mx-auto group-hover:bg-white group-hover:scale-110">
+                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Ultrafiltration (UF) is an advanced membrane filtration process that removes bacteria, viruses, and suspended solids from water. It serves as an excellent pre-treatment before Reverse Osmosis (RO) and is widely used in industrial water purification, wastewater treatment, and drinking water applications.
-                    </p>
-                    <p class="text-gray-600 mb-6">
-                        UF membranes provide superior filtration while maintaining essential minerals in the water.
-                    </p>
-                     <ul class="check-list space-y-2">
-                        <li><strong>Advanced Tech:</strong> Utilizes advanced membrane filtration technology.</li>
-                        <li><strong>Safe Water:</strong> Removes bacteria, viruses & suspended solids.</li>
-                        <li><strong>RO Compatible:</strong> Ideal for pre-treatment before RO systems.</li>
-                    </ul>
+                    <h4 class="text-lg font-bold text-slate-800">Multi Effect Evaporator</h4>
                 </div>
+
+                <div class="tech-card p-8 text-center border-t-4 border-[#1c89c8] group hover:bg-blue-50 transition-all">
+                      <div class="icon-circle mx-auto group-hover:bg-white group-hover:scale-110">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800">Forced Circulation Evaporator</h4>
+                </div>
+
+                <div class="tech-card p-8 text-center border-t-4 border-green-t group hover:bg-green-50 transition-all">
+                      <div class="icon-circle icon-green-bg mx-auto group-hover:bg-white group-hover:scale-110">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800">Falling Film Evaporator</h4>
+                </div>
+
+                <div class="tech-card p-8 text-center border-t-4 border-[#1c89c8] group hover:bg-blue-50 transition-all">
+                      <div class="icon-circle mx-auto group-hover:bg-white group-hover:scale-110">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800">Agitated Thin Film Evaporator</h4>
+                </div>
+
+                <div class="tech-card p-8 text-center border-t-4 border-green-t group hover:bg-green-50 transition-all">
+                      <div class="icon-circle icon-green-bg mx-auto group-hover:bg-white group-hover:scale-110">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800">Mechanical Vapor Recompression (MVR)</h4>
+                </div>
+                
             </div>
         </div>
     </section>
-
-    <!-- Product 3: Reverse Osmosis (RO) - Image Left -->
-    <section class="product-section bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-                <div class="w-full lg:w-1/2">
-                    <div class="product-image-container">
-                         [Image of Commercial Reverse Osmosis System]
-                        <img src="https://placehold.co/800x600/e2e8f0/1c89c8?text=Reverse+Osmosis+Plant" alt="Reverse Osmosis (RO)" class="w-full h-full object-cover">
-                    </div>
-                </div>
-                <div class="w-full lg:w-1/2">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="bg-blue-100 p-2 rounded-lg text-[#1c89c8]">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <h3 class="text-3xl font-bold text-slate-800">Reverse Osmosis (RO)</h3>
-                    </div>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Reverse Osmosis (RO) is a highly effective water purification technology that removes dissolved salts, heavy metals, bacteria, and other contaminants. By applying high pressure, RO systems force water through a semi-permeable membrane, ensuring the delivery of high-purity water.
-                    </p>
-                     <p class="text-gray-600 mb-6">
-                       Suitable for critical industrial, commercial, and domestic applications where purity is paramount.
-                    </p>
-                     <ul class="check-list space-y-2">
-                        <li><strong>High Purity:</strong> Delivers high-purity water for industrial & commercial use.</li>
-                        <li><strong>Comprehensive Filtration:</strong> Removes dissolved salts, heavy metals & bacteria.</li>
-                        <li><strong>Efficient Operation:</strong> Energy-efficient, cost-effective & easy to operate.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     <section class="py-16 bg-[#1c89c8] relative overflow-hidden">
       <div class="absolute inset-0 bg-pattern opacity-10" style="background-image: radial-gradient(circle, #fff 10%, transparent 10%); background-size: 20px 20px;"></div>
       <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-        <h2 class="text-3xl font-bold text-white mb-6">Need Pure Water Solutions?</h2>
-        <p class="text-blue-100 text-lg mb-8">Contact us for customized water treatment plants designed for your needs.</p>
+        <h2 class="text-3xl font-bold text-white mb-6">Need a Zero Liquid Discharge Solution?</h2>
+        <p class="text-blue-100 text-lg mb-8">Contact us for high-efficiency ZLD systems tailored to your industrial needs.</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
           <a href="contact.html" class="bg-white text-[#1c89c8] px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors shadow-lg">Get a Quote</a>
           <a href="tel:+919999999999" class="border-2 border-white text-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-[#1c89c8] transition-colors">Call Sales</a>
@@ -513,7 +532,5 @@
         <a href="#" class="bg-white text-[#5cb650] hover:bg-gray-50 hover:shadow-lg transform hover:-translate-y-0.5 font-bold py-2 px-6 rounded text-xs tracking-wider transition-all duration-300">GET A QUOTE</a>
       </div>
     </footer>
-
-   
   </body>
 </html>
